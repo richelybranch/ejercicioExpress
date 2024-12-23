@@ -60,6 +60,22 @@ app.get('/rombo/:diagonalMayor/:diagonalMenor/:lado', (req, resp) => {
     resp.send(`El área del rombo es: ${area}, y el perímetro es: ${perimetro}`);
 });
 
+// Web service para calcular el trinomio cuadrado perfecto
+app.get('/trinomiocuadrado/:a/:b/:c', (req, resp) => {
+    let a = parseFloat(req.params.a);
+    let b = parseFloat(req.params.b);
+    let c = parseFloat(req.params.c);
+
+    // Verifica si el trinomio es cuadrado perfecto
+    if (b * b === 4 * a * c) {
+        let factor = Math.sqrt(a);
+        resp.send(`El trinomio cuadrado perfecto es: (${factor}x + ${b / (2 * factor)})^2`);
+    } else {
+        resp.send("No es un trinomio cuadrado perfecto.");
+    }
+});
+
+
 // Levantar el servidor
 app.listen(3000, () => {
     console.log('MELO');
